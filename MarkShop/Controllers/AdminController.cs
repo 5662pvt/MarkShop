@@ -9,6 +9,7 @@ namespace MarkShop.Controllers
 {
     public class AdminController : Controller
     {
+        //test
         // GET: Admin
         QLBanQuanAoDataContext db = new QLBanQuanAoDataContext();
         public ActionResult LayoutAdmin()
