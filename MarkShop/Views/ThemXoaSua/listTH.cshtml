@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MarkShop.NhaCungCap>
+@{
+    ViewBag.Title = "listTH";
+    Layout = "~/Views/Admin/LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách thương hiệu</h2>
+
+<a class="btn btn-success" href="@Url.Action("CreateTH", "ThemXoaSua")">Thêm thương hiệu</a>
+<br />
+<a>&nbsp;</a>
+<table border="5" width="100%">
+    <tr>
+
+        <th style="text-align:center" width="70%"> Tên thương hiệu </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNCC)
+            </td>
+            <td style="text-align:center">
+                <a class="btn btn-warning" href="@Url.Action("EditTH", "ThemXoaSua",
+                                new { @id = item.MaNCC })">Edit</a> |
+                <a class="btn btn-danger" href="@Url.Action("DeleteTH", "ThemXoaSua",
+                                new { @id = item.MaNCC })">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+

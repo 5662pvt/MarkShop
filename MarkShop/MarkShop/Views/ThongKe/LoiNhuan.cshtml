@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "LoiNhuan";
+    Layout = "~/Views/Admin/LayoutAdmin.cshtml";
+}
+<div class="list-of-members d-flex">
+    <div class="TongDT" style="background-color:aqua; width:200px; height:100px; text-align:center;">
+        <div>
+
+        </div>
+        <div>
+            <h3 style="margin-top:20px;">@String.Format("{0:0,0}", ViewBag.TongDoanhThu)</h3>
+            <p>Doanh Thu</p>
+        </div>
+    </div>
+    <div class="SLUser" style="margin-left: 20px; background-color: grey; width: 200px; height: 100px; text-align: center;">
+        <div>
+
+        </div>
+        <div>
+            <h3 style="margin-top:20px">@ViewBag.SLKH</h3>
+            <p>Khách hàng</p>
+        </div>
+    </div>
+    <div class="SLDH" style="margin-left: 20px; background-color: sandybrown; width: 200px; height: 100px; text-align: center;">
+        <div>
+
+        </div>
+        <div>
+            <h3 style="margin-top:20px">@ViewBag.SLDH</h3>
+            <p>Hóa đơn</p>
+        </div>
+    </div>
+    <div class="SLDaTruyCap" style="margin-left: 20px; background-color: orangered; width: 200px; height: 100px; text-align: center; ">
+        <div>
+
+        </div>
+        <div>
+            <h3 style="margin-top:20px">@ViewBag.SoNgTruycap</h3>
+            <p>Người đã truy cập</p>
+        </div>
+    </div>
+    <div class="SLDangTruyCap" style="margin-left: 20px; background-color: limegreen; width: 200px; height: 100px; text-align: center;">
+        <div>
+
+        </div>
+        <div>
+            <h3 style="margin-top:20px">@ViewBag.SoNgDangTruyCap</h3>
+            <p>Người đang truy cập</p>
+        </div>
+    </div>
+</div>
+<h3 class="text-center lead mb-3 font-weight-bold" style="font-size: 36px; text-shadow: 0 0 8px rgba(0,0,0,0.2)" data-aos="flip-right">
+    Lợi nhuận
+</h3>
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Số lượng đã bán</th>
+            <th>Tổng tiền doanh thu</th>
+            <th>Tổng tiền nhập hàng</th>
+            <th>Lợi Nhuận</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.TongSL</td>
+            <td>@String.Format("{0:0,0}", ViewBag.TongDoanhThu)</td>
+            <td>@String.Format("{0:0,0}", ViewBag.TongNhapHang)</td>
+            <td>@String.Format("{0:0,0}", ViewBag.TongDoanhThu - ViewBag.TongNhapHang)</td>
+        </tr>
+    </tbody>
+</table>

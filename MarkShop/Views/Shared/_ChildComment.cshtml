@@ -1,0 +1,89 @@
+﻿@model List<MarkShop.ViewModels.CMVM>
+@{
+    <script src="/JS/comment.js"></script>
+}
+
+@foreach (var itemcomment in Model)
+{
+    <div class="row">
+        <!-- Review item START -->
+        <div class="d-md-flex my-4" style="margin-left: 15px">
+            <!-- Avatar -->
+            <div class="avatar avatar-xl me-4 flex-shrink-0">
+                <img class="avatar-img rounded-circle" src="~/Images/icon_user.jpg" alt="avatar" width="40">
+            </div>
+            <!-- Text -->
+            <div class="col-md-12">
+                <div class="d-sm-flex mt-1 mt-md-0 align-items-center">
+                    <h5 class="me-3 mb-0">@itemcomment.Name</h5>
+                    <br />
+                    <!-- Review star -->
+                    <ul class="list-inline mb-0" style=" margin-left: 20px">
+                        <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+                        @if (itemcomment.Rate >= 2)
+                        {
+                            <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+
+                        }
+                        else
+                        {
+                            <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                        }
+                        @if (itemcomment.Rate >= 3)
+                        {
+                            <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+
+                        }
+                        else
+                        {
+                            <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                        }
+                        @if (itemcomment.Rate >= 4)
+                        {
+                            <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+                        }
+                        else
+                        {
+                            <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                        }
+                        @if (itemcomment.Rate >= 5)
+                        {
+                            <li class="list-inline-item me-0"><i class="fas fa-star text-warning"></i></li>
+
+                        }
+                        else
+                        {
+                            <li class="list-inline-item me-0"><i class="far fa-star text-warning"></i></li>
+                        }
+
+                    </ul>
+                </div>
+                <!-- Info -->
+                <p class="small mb-2">@itemcomment.ComentDate</p>
+                <div class="mt-2">
+                    <p class="mb-2">@itemcomment.ComentMsg</p>
+                    <div class="bg-white"></div>
+                    <div class="d-flex flex-row">
+                        <a class="accordion-collapse collapse show" href="#commmentreply-@itemcomment.MaBL" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapse-1">
+                            <i class="fas fa-reply me-2"></i>Reply
+                        </a>
+                    </div>
+                </div>
+
+                <div id="commmentreply-@itemcomment.MaBL" class="bg-light p-2 collapse">
+                    <div class="d-flex flex-row align-items-start">
+                        <img class="avatar-img rounded-circle" src="~/Images/icon_user.jpg" alt="avatar" width="40">
+                        <textarea class="form-control" id="txtCommentMsg_@itemcomment.MaBL" placeholder="Viết nhận xét tại đây" rows="3"></textarea>
+                    </div>
+                    <div class="mt-2 text-right">
+                        <a class="abcdefghkj" data-productid="@itemcomment.MaSP" data-userid="@itemcomment.MaKH" data-parentid="@itemcomment.MaBL" data-commentmsg="txtCommentMsg_@itemcomment.MaBL">
+                            <input type="submit" class="btn btn-primary mb-0" value="Gửi bình luận" />
+                        </a>
+                    </div>
+                </div>
+                <!-- Reply button -->
+                @{Html.RenderAction("_ChildComment", "SanPham", new { parentid = itemcomment.MaBL, productid = itemcomment.MaSP });}
+            </div>
+        </div>
+    </div>
+}

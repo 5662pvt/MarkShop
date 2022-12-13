@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MarkShop.SanPham>
+@{
+    ViewBag.Title = "SanPhamTon";
+    Layout = "~/Views/Admin/LayoutAdmin.cshtml";
+}
+
+<h3 class="text-center lead mb-3 font-weight-bold" style="font-size: 36px; text-shadow: 0 0 8px rgba(0,0,0,0.2)" data-aos="flip-right">
+    Danh mục các sản phẩm tồn
+</h3>
+<br />
+<br />
+@using (Html.BeginForm("timKiemSanPham", "ThemXoaSua"))
+{
+    <div class="d-flex" data-aos="fade-left">
+        <div class="group">
+            <input class="txtTimKiem" type="text" name="tenSP" autocomplete="off" required>
+            <label class="timKiem">Tìm kiếm sản phẩm</label>
+        </div>
+        <button class="btnStyle btn1 ml-3" style="width:90px; height:40px; line-height:16px;">Tìm</button>
+    </div>
+}
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Mã sản phẩm</th>
+            <th style="width: 300px;">Tên sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Số lượng tồn</th>
+            <th>Đơn giá</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaSP</td>
+                <td>@item.TenSP</td>
+                <td style="width: 120px">
+                    <a href="~/Images/@item.Anh" data-lightbox="listImg">
+                        <img src="~/Images/@item.Anh" height="70" />
+                    </a>
+                </td>
+                <td>
+                    @item.SoLuongTon
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.GiaBan)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

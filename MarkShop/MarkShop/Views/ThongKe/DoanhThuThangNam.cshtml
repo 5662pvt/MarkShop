@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MarkShop.LoaiSanPham>
+@{
+    ViewBag.Title = "DoanhThuThangNam";
+    Layout = "~/Views/Admin/LayoutAdmin.cshtml";
+}
+<style>
+    a {
+        width: 50%;
+        display: inline-block;
+    }
+</style>
+<h3 class="text-center lead mb-3 font-weight-bold" style="font-size: 36px; text-shadow: 0 0 8px rgba(0,0,0,0.2)" data-aos="flip-right">
+    Doanh thu theo khoảng
+</h3>
+@using (Html.BeginForm("DoanhThuThangNam", "ThongKe"))
+{
+    <div class="d-flex">
+        <div style="margin-right:10px">
+            <a>Từ</a>
+            <input type="date" name="NgayBD" id="ngayBD" class="mb-2" style="color:black" />
+        </div>
+        <div>
+            <a>đến</a>
+            <input type="date" name="NgayKT" id="ngayKT" class="mb-2" style="color:black" />
+        </div>
+        <button class="btnStyle btn1 ml-3" style="width: 90px; height: 40px; line-height:16px; margin-top:35px" id="btnTim">Tìm</button>
+    </div>
+}
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Số lượng đã bán</th>
+            <th>Tổng doanh thu</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.SoLuong</td>
+            <td>@ViewBag.TongDoanhThu</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    document.getElementById("btnTim").onclick = function (e) {
+        var selectedStartDate = document.getElementById("ngayBD").value;
+        var selectedEndDate = document.getElementById("ngayKT").value;
+        if (!Date.parse(selectedStartDate) && !Date.parse(selectedEndDate)) {
+            Swal.fire({
+                title: 'Thông báo',
+                text: 'Vui lòng chọn ngày bắt đầu và kết thúc!',
+                icon: 'error',
+            })
+            e.preventDefault();
+        }
+        if (Date.parse(selectedStartDate) > Date.parse(selectedEndDate)) {
+            Swal.fire({
+                title: 'Thông báo',
+                text: 'Ngày kết thúc hàng phải lớn hơn ngày bắt đầu!',
+                icon: 'error',
+            })
+            e.preventDefault();
+        }
+        if (!Date.parse(selectedStartDate) || !Date.parse(selectedEndDate)) {
+            Swal.fire({
+                title: 'Thông báo',
+                text: 'Vui long nhap ngay bat dau va ket thuc',
+                icon: 'error',
+            })
+            e.preventDefault();
+        }
+    }
+</script>
+
+
+
+
